@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en" style="height: auto; min-height: 100%; scroll-behavior: smooth;">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Packages — Pricing | ShopifyCrawlFix</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link id="heading-font-link" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link id="body-font-link" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['var(--font-heading-name)', 'sans-serif'],
+            body: ['var(--font-body-name)', 'sans-serif'],
+          },
+          spacing: { base: 'var(--space-base)' },
+          borderRadius: {
+            small: 'var(--radius-small)',
+            large: 'var(--radius-large)',
+          },
+          boxShadow: {
+            custom: 'var(--shadow-custom)',
+            'custom-hover': 'var(--shadow-custom-hover)',
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              200: '#c7d2fe',
+              300: '#a5b4fc',
+              400: '#818cf8',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              800: '#3730a3',
+              900: '#312e81',
+            },
+            accent: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              200: '#a7f3d0',
+              300: '#6ee7b7',
+              400: '#34d399',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              800: '#065f46',
+              900: '#064e3b',
+            },
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --font-heading-name: 'Poppins';
+      --font-body-name: 'Work Sans';
+      --font-heading: 'Poppins', sans-serif;
+      --font-body: 'Work Sans', sans-serif;
+      --letter-spacing-heading: -0.25px;
+      --letter-spacing-body: 0px;
+      --space-base: 1rem;
+      --radius-small: 8px;
+      --radius-large: 16px;
+      --border-width: 1px;
+      --shadow-color: 99 102 241;
+      --shadow-offset-x: 0px;
+      --shadow-offset-y: 4px;
+      --shadow-blur: 24px;
+      --shadow-spread: 0px;
+      --shadow-opacity: 0.15;
+      --shadow-custom: 0px 4px 24px rgba(99, 102, 241, 0.15);
+      --shadow-custom-hover: 0px 8px 40px rgba(99, 102, 241, 0.25);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    .gradient-hero {
+      background: linear-gradient(135deg, #0f0c29 0%, #1a1a4e 40%, #24243e 100%);
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #818cf8 0%, #34d399 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .card-hover {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-6px);
+      box-shadow: 0px 16px 48px rgba(99, 102, 241, 0.2);
+    }
+
+    .package-card {
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .package-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(99, 102, 241, 0.25);
+    }
+
+    .package-card.featured {
+      transform: translateY(-12px) scale(1.03);
+      box-shadow: 0 24px 72px rgba(99, 102, 241, 0.35);
+    }
+    .package-card.featured:hover {
+      transform: translateY(-16px) scale(1.03);
+      box-shadow: 0 28px 80px rgba(99, 102, 241, 0.4);
+    }
+
+    .badge-pulse {
+      animation: pulse-badge 2s ease-in-out infinite;
+    }
+    @keyframes pulse-badge {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+      50% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+    }
+
+    .nav-link {
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #818cf8, #34d399);
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after { width: 100%; }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #4338ca 0%, #6d28d9 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
+    }
+
+    .btn-outline {
+      transition: all 0.3s ease;
+    }
+    .btn-outline:hover {
+      border-color: #6366f1;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .section-divider {
+      background: linear-gradient(90deg, transparent, #6366f1, transparent);
+      height: 1px;
+    }
+
+    .mobile-menu {
+      transition: all 0.3s ease;
+    }
+
+    .feature-check {
+      flex-shrink: 0;
+    }
+
+    .comparison-row:nth-child(even) {
+      background: rgba(255,255,255,0.02);
+    }
+
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .glow-brand {
+      box-shadow: 0 0 40px rgba(99, 102, 241, 0.3), 0 0 80px rgba(99, 102, 241, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      .package-card.featured {
+        transform: none;
+      }
+      .package-card.featured:hover {
+        transform: translateY(-6px);
+      }
+    }
+  </style>
+</head>
+<body class="font-body bg-gray-950 text-gray-100" style="height: auto; min-height: 100%;">
+
+  <!-- NAVIGATION -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-gray-950/90 backdrop-blur-md border-b border-gray-800/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-small bg-gradient-to-br from-brand-500 to-purple-600 flex items-center justify-center">
+            <span class="text-white text-xs font-bold">PLS</span>
+          </div>
+          <span class="font-heading font-bold text-white text-lg">ShopifyCrawlFix</span>
+        </div>
+        <div class="hidden md:flex items-center gap-6">
+          <a href="/api/copilot/prototype/a5ab68f6-68ce-457a-bfe0-8f7edfb39571/pls-security" class="nav-link text-gray-400 hover:text-white text-sm font-medium transition-colors">PLS Security</a>
+          <a href="/api/copilot/prototype/a5ab68f6-68ce-457a-bfe0-8f7edfb39571/api-encryption" class="nav-link text-gray-400 hover:text-white text-sm font-medium transition-colors">API Encryption</a>
+          <a href="/api/copilot/prototype/a5ab68f6-68ce-457a-bfe0-8f7edfb39571/email-marketing" class="nav-link text-gray-400 hover:text-white text-sm font-medium transition-colors">Email Marketing</a>
+          <a href="/api/copilot/prototype/a5ab68f6-68ce-457a-bfe0-8f7edfb39571/service-packages" class="nav-link text-brand-400 text-sm font-medium transition-colors">Packages</a>
+          <a href="/api/copilot/prototype/a5ab68f6-68ce-457a-bfe0-8f7edfb39571/contact-us" class="nav-link text-gray-400 hover:text-white text-sm font-medium transition-colors">Contact</a>
+          <a href="/api/copilot/prototype/a5ab68f6-68ce-457a-bfe0-8f7edfb39571/contact-us" class="btn-primary text-white text-sm font-semibold px-5 py-2 rounded-small">Get Started</a>
+        </div>
+        <button id="mobile-menu-btn" class="md:hidden text-gray-400 hover:text-white p-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="mobile-menu hidden md:hidden bg-gray-900 border-t border-gray-800 px-4 py-4">
+      <div class="flex flex-col gap-4">
+        <a href="/api/copilot/prototype/a5ab68f6-68ce-457a-bfe0-8f7edfb39571/pls-security" class="text-gray-300 hover:text-white text-sm font-medium">PLS Security</a>
+        <a href="/api/copilot/prototype/a5ab68f6-68ce-457a-bfe0-8f7edfb39571/api-encryption" class="text-gray-300 hover:text-white text-sm font-medium">API Encryption</a>
+        <a href="/api/copilot/prototype/a5ab68f6-68ce-457a-bfe0-8f7edfb39571/email-marketing" class="text-gray-300 hover:text-white text-sm font-medium">Email Marketing</a>
+        <a href="/api/copilot/prototype/a5ab68f6-68ce-457a-bfe0-8f7edfb39571/service-packages" class="text-brand-400 text-sm font-medium">Service Packages</a>
+        <a href="/api/copilot/prototype/a5ab68f6-68ce-457a-bfe0-8f7edfb39571/contact-us" class="text-gray-300 hover:text-white text-sm font-medium">Contact Us</a>
+        <a href="/api/copilot/prototype/a5ab68f6-68ce-457a-bfe0-8f7edfb39571/contact-us" class="btn-primary text-white text-sm font-semibold px-5 py-2.5 rounded-small text-center">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="gradient-hero pt-28 pb-16 md:pt-36 md:pb-20 relative overflow-hidden" style="max-height: 700px;">
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute top-20 left-10 w-72 h-72 bg-brand-600/10 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-10 right-10 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-brand-500/5 rounded-full blur-3xl"></div>
+    </div>
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      <div class="inline-flex items-center gap-2 bg-brand-500/10 border border-brand-500/20 rounded-full px-4 py-1.5 mb-6">
+        <span class="w-2 h-2 bg-accent-400 rounded-full badge-pulse"></span>
+        <span class="text-brand-300 text-xs font-semibold tracking-wide uppercase">Transparent Pricing</span>
+      </div>
+      <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+        Choose Your<br>
+        <span class="gradient-text">Protection Package</span>
+      </h1>
+      <p class="text-gray-300 text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
+        One-time payment. No subscriptions. No hidden fees. Select the package that fits your Shopify store's needs and get started today.
+      </p>
+      <div class="flex flex-wrap justify-center items-center gap-6">
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-accent-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          <span class="text-gray-400 text-sm">One-time payment</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-accent-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          <span class="text-gray-400 text-sm">No recurring fees</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-accent-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          <span class="text-gray-400 text-sm">24–72h turnaround</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-accent-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          <span class="text-gray-400 text-sm">Satisfaction guaranteed</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- PRICING CARDS SECTION -->
+  <section class="py-20 bg-gray-950" style="max-height: 1400px;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-start">
+
+        <!-- BASIC PROTECTION -->
+        <div class="package-card bg-gray-900 border-2 border-gray-700 rounded-large p-8 relative">
+          <div class="mb-6">
+            <div class="w-14 h-14 bg-blue-500/15 rounded-large flex items-center justify-center mb-5">
+              <svg class="w-7 h-7 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            </div>
+            <h3 class="font-heading text-2xl font-bold text-white mb-2">Basic Protection</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">Essential crawl fixes and robots.txt optimization for small Shopify stores just getting started with SEO.</p>
+          </div>
+
+          <div class="mb-8 pb-8 border-b border-gray-700/60">
+            <div class="flex items-end gap-2">
+              <span class="font-heading text-5xl font-bold text-white">$60</span>
+              <span class="text-gray-400 text-sm mb-2">one-time</span>
+            </div>
+            <p class="text-gray-500 text-xs mt-1">No subscription required</p>
+          </div>
+
+          <ul class="space-y-4 mb-10">
+            <li class="flex items-start gap-3">
+              <svg class="feature-check w-5 h-5 text-accent-400 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <div>
+                <p class="text-gray-200 text-sm font-medium">Robots.txt Configuration</p>
+                <p class="text-gray-500 text-xs mt-0.5">Full rewrite and optimization of your robots.txt file</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="feature-check w-5 h-5 text-accent-400 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <div>
+                <p class="text-gray-200 text-sm font-medium">Crawl Rule Optimization</p>
+                <p class="text-gray-500 text-xs mt-0.5">Allow crawling of product and collection pages</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="feature-check w-5 h-5 text-accent-400 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <div>
+                <p class="text-gray-200 text-sm font-medium">Indexing Protection</p>
+                <p class="text-gray-500 text-xs mt-0.5">Block admin and checkout pages from search engines</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="feature-check w-5 h-5 text-accent-400 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <div>
+                <p class="text-gray-200 text-sm font-medium">Basic Crawl Audit Report</p>
+                <p class="text-gray-500 text-xs mt-0.5">Summary report of issues found and fixes applied</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="feature-check w-5 h-5 text-accent-400 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <div>
+                <p class="text-gray-200 text-sm font-medium">72-Hour Turnaround</p>
+                <p class="text-gray-500 text-xs mt-0.5">Completed within 3 business days</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="feature-check w-5 h-5 text-accent-400 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <div>
+                <p class="text-gray-200 text-sm font-medium">Email Support</p>
+                <p class="text-gray-500 text-xs mt-0.5">Standard email support during implementation</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="feature-check w-5 h-5 gray-600 mt-0.5 opacity-30" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
+              <div>
+                <p class="text-gray-600 text-sm font-medium line-through">Advanced Security Config</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="feature-check w-5 h-5 opacity-30 mt-0.5" fill="currentColor" viewBox="0 0 20 20" style="color:#4b5563"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
+              <div>
+                <p class="text-gray-600 text-sm font-medium line-through">Performance Monitoring</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="feature-check w-5 h-5 opacity-30 mt-0.5" fill="currentColor" viewBox="0 0 20 20" style="color:#4b5563"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
+              <div>
+                <p class="text-gray-600 text-sm font-medium line-through">Priority Support</p>
+              </div>
+            </li>
+          </ul>
+
+          <a href="/api/copilot/prototype/a5ab68f6-68ce-457a-bfe0-8f7edfb39571/contact-us" class="block w-full py-3.5 rounded-small border-2 border-gray-600 text-gray-300 font-semibold text-sm text-center btn-outline hover:border-brand-500 hover:text-white transition-all duration-300">
+            Select Basic Package →
+          </a>
+          <p class="text-gray-600 text-xs text-center mt-3">Best for new or small stores</p>
+        </div>
+
+        <!-- ADVANCED PROTECTION (FEATURED) -->
+        <div class="package-card featured bg-gray-900 border-2 border-brand-500 rounded-large p-8 relative glow-brand">
+          <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-brand-500 to-purple-600 text-white text-xs font-bold px-5 py-2 rounded-full whitespace-nowrap shadow-custom">
+            ⭐ MOST POPULAR
+          </div>
+          <div class="mb-6">
+            <div class="w-14 h-14 bg-brand-500/20 rounded-large flex items-center justify-center mb-5">
+              <svg class="w-7 h-7 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <h3 class="font-heading text-2xl font-bold text-white mb-2">Advanced Protection</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">Complete protection and performance optimization for growing Shopify stores with higher traffic and revenue.</p>
+          </div>
+
+          <div class="mb-8 pb-8 border-b border-brand-500/30">
+            <div class="flex items-end gap-2">
+              <span class="font-heading text-5xl font-bold text-white">$120</span>
+              <span class="text-gray-400 text-sm mb-2">one-time</span>
+            </div>
+            <p class="text-gray-500 text-xs mt-1">No subscription required</p>
+          </div>
+
+          <ul class="space-y-4 mb-10">
+            <li class="flex items-start gap-3">
+              <svg class="feature-check w-5 h-5 text-accent-400 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <div>
+                <p class="text-gray-200 text-sm font-medium">Full Robots.txt Optimization</p>
+                <p class="text-gray-500 text-xs mt-0.5">Advanced rewrite with bot-specific directives</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="feature-check w-5 h-5 text-accent-400 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <div>
+                <p class="text-gray-200 text-sm font-medium">Crawl Error Detection & Fix</p>
+                <p class="text-gray-500 text-xs mt-0.5">Identify and resolve all active crawl errors</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="feature-check w-5 h-5 text-accent-400 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <div>
+                <p class="text-gray-200 text-sm font-medium">Advanced Security Configuration</p>
+                <p class="text-gray-500 text-xs mt-0.5">Block malicious bots and protect sensitive endpoints</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="feature-check w-5 h-5 text-accent-400 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <div>
+                <p class="text-gray-200 text-sm font-medium">Store Performance Review</p>
+                <p class="text-gray-500 text-xs mt-0.5">Full crawl budget analysis and efficiency report</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="feature-check w-5 h-5 text-accent-400 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <div>
+                <p class="text-gray-200 text-sm font-medium">Detailed Audit Report</p>
+                <p class="text-gray-500 text-xs mt-0.5">Before/after comparison with full documentation</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="feature-check w-5 h-5 text-accent-400 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <div>
+                <p class="text-gray-200 text-sm font-medium">48-Hour Turnaround</p>
+                <p class="text-gray-500 text-xs mt-0.5">Faster delivery than Basic package</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="feature-check w-5 h-5 text-accent-400 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <div>
+                <p class="text-gray-200 text-sm font-medium">Priority Email Support</p>
+                <p class="text-gray-500 text-xs mt-0.5">Faster response times throughout the process</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="feature-check w-5 h-5 text-accent-400 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <div>
+                <p class="text-gray-200 text-sm font-medium">Sitemap Validation</p>
+                <p class="text-gray-500 text-xs mt-0.5">Verify and optimize your XML sitemap structure</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="feature-check w-5 h-5 opacity-30 mt-0.5" fill="currentColor" viewBox="0 0 20 20" style="color:#4b5563"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
+              <div>
+                <p class="text-gray-600 text-sm font-medium line-through">30-Day Monitoring</p>
+              </div>
+            </li>
+          </ul>
+
+          <a href="/api/copilot/prototype/a5ab68f6-68ce-457a-bfe0-8f7edfb39571/contact-us" class="block w-full py-3.5 rounded-small btn-primary text-white font-bold text-sm text-center">
+            Select Advanced Package →
+          </a>
+          <p class="text-gray-500 text-xs text-center mt-3">Best for growing stores</p>
+        </div>
+
+        <!-- PREMIUM PROTECTION -->
+        <div class="package-card bg-gray-900 border-2 border-gray-700 rounded-large p-8 relative">
+          <div class="absolute top-5 right-5 bg-yellow-500/15 border border-yellow-500/30 text-yellow-400 text-xs font-bold px-3 py-1 rounded-full">
+            ENTERPRISE
+          </div>
+          <div class="mb-6">
+            <div class="w-14 h-14 bg-yellow-500/15 rounded-large flex items-center justify-center mb-5">
+              <svg class="w-7 h-7 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+            </div>
+            <h3 class="font-heading text-2xl font-bold text-white mb-2">Premium Protection</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">Enterprise-grade optimization and monitoring for high-traffic Shopify stores where every crawl matters.</p>
+          </div>
+
+          <div class="mb-8 pb-8 border-b border-gray-700/60">
+            <div class="flex items-end gap-2">
+              <span class="font-heading text-5xl font-bold text-white">$200</span>
+              <span class="text-gray-400 text-sm mb-2">one-time</span>
+            </div>
+            <p class="text-gray-500 text-xs mt-1">No subscription required</p>
+          </div>
+
+          <ul class="space-y-4 mb-10">
+            <li class="flex items-start gap-3">
+              <svg class="feature-check w-5 h-5 text-accent-400 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <div>
+                <p class="text-gray-200 text-sm font-medium">Full Store Optimization</p>
+                <p class="text-gray-500 text-xs mt-0.5">Complete crawl and indexing overhaul for all pages</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="feature-check w-5 h-5 text-accent-400 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <div>
+                <p class="text-gray-200 text-sm font-medium">Advanced Crawl Rule Setup</p>
+                <p class="text-gray-500 text-xs mt-0.5">Custom rules for Googlebot, Bingbot, and all major crawlers</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="feature-check w-5 h-5 text-accent-400 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <div>
+                <p class="text-gray-200 text-sm font-medium">Enterprise Security Config</p>
+                <p class="text-gray-500 text-xs mt-0.5">Advanced bot filtering and threat protection rules</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="feature-check w-5 h-5 text-accent-400 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <div>
+                <p class="text-gray-200 text-sm font-medium">30-Day Performance Monitoring</p>
+                <p class="text-gray-500 text-xs mt-0.5">Post-implementation tracking and health checks</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="feature-check w-5 h-5 text-accent-400 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <div>
+                <p class="text-gray-200 text-sm font-medium">Comprehensive Audit Report</p>
+                <p class="text-gray-500 text-xs mt-0.5">Detailed technical documentation with recommendations</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="feature-check w-5 h-5 text-accent-400 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <div>
+                <p class="text-gray-200 text-sm font-medium">24-Hour Priority Turnaround</p>
+                <p class="text-gray-500 text-xs mt-0.5">Fastest delivery — completed within 1 business day</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="feature-check w-5 h-5 text-accent-400 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <div>
+                <p class="text-gray-200 text-sm font-medium">Dedicated Priority Support</p>
+                <p class="text-gray-500 text-xs mt-0.5">Direct access to a senior Shopify SEO specialist</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="feature-check w-5 h-5 text-accent-400 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <div>
+                <p class="text-gray-200 text-sm font-medium">Sitemap & Canonical Audit</p>
+                <p class="text-gray-500 text-xs mt-0.5">Full XML sitemap and canonical tag review</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="feature-check w-5 h-5 text-accent-400 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <div>
+                <p class="text-gray-200 text-sm font-medium">API & PLS Security Bundle</p>
+                <p class="text-gray-500 text-xs mt-0.5">Includes API encryption and PLS security review</p>
+              </div>
+            </li>
+          </ul>
+
+          <a href="/api/copilot/prototype/a5ab68f6-68ce-457a-bfe0-8f7edfb39571/contact-us" class="block w-full py-3.5 rounded-small border-2 border-yellow-500/50 text-yellow-300 font-semibold text-sm text-center transition-all duration-300 hover:border-yellow-400 hover:text-yellow-200 hover:bg-yellow-500/10">
+            Select Premium Package →
+          </a>
+          <p class="text-gray-600 text-xs text-center mt-3">Best for high-traffic stores</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- COMPARISON TABLE SECTION -->
+  <section class="py-20 bg-gray-900" style="max-height: 1200px;">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <div class="inline-flex items-center gap-2 bg-brand-500/10 border border-brand-500/20 rounded-full px-4 py-1.5 mb-4">
+          <span class="text-brand-300 text-xs font-semibold tracking-wide uppercase">Feature Comparison</span>
+        </div>
+        <h2 class="font-heading text-3xl sm:text-4xl font-bold text-white mb-4">Compare All Packages</h2>
+        <p class="text-gray-400 text-lg max-w-2xl mx-auto">See exactly what's included in each package before you decide.</p>
+      </div>
+
+      <div class="bg-gray-800/40 border border-gray-700 rounded-large overflow-hidden">
+        <!-- Table Header -->
+        <div class="grid grid-cols-4 bg-gray-800/80 border-b border-gray-700">
+          <div class="p-5 col-span-1">
+            <p class="text-gray-400 text-sm font-semibold">Feature</p>
+          </div>
+          <div class="p-5 text-center border-l border-gray-700">
+            <p class="font-heading font-bold text-white text-sm">Basic</p>
+            <p class="text-blue-400 font-bold text-lg font-heading">$60</p>
+          </div>
+          <div class="p-5 text-center border-l border-brand-500/40 bg-brand-500/5">
+            <p class="font-heading font-bold text-brand-300 text-sm">Advanced</p>
+            <p class="text-white font-bold text-lg font-heading">$120</p>
+          </div>
+          <div class="p-5 text-center border-l border-gray-700">
+            <p class="font-heading font-bold text-yellow-300 text-sm">Premium</p>
+            <p class="text-white font-bold text-lg font-heading">$200</p>
+          </div>
+        </div>
+
+        <!-- Rows -->
+        <div class="comparison-row grid grid-cols-4 border-b border-gray-700/50">
+          <div class="p-4 col-span-1 flex items-center">
+            <p class="text-gray-300 text-sm">Robots.txt Optimization</p>
+          </div>
+          <div class="p-4 flex items-center justify-center border-l border-gray-700/50">
+            <svg class="w-5 h-5 text-accent-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="p-4 flex items-center justify-center border-l border-brand-500/30 bg-brand-500/5">
+            <svg class="w-5 h-5 text-accent-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="p-4 flex items-center justify-center border-l border-gray-700/50">
+            <svg class="w-5 h-5 text-accent-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          </div>
+        </div>
+
+        <div class="comparison-row grid grid-cols-4 border-b border-gray-700/50">
+          <div class="p-4 col-span-1 flex items-center">
+            <p class="text-gray-300 text-sm">Crawl Rule Optimization</p>
+          </div>
+          <div class="p-4 flex items-center justify-center border-l border-gray-700/50">
+            <svg class="w-5 h-5 text-accent-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="p-4 flex items-center justify-center border-l border-brand-500/30 bg-brand-500/5">
+            <svg class="w-5 h-5 text-accent-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="p-4 flex items-center justify-center border-l border-gray-700/50">
+            <svg class="w-5 h-5 text-accent-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          </div>
+        </div>
+
+        <div class="comparison-row grid grid-cols-4 border-b border-gray-700/50">
+          <div class="p-4 col-span-1 flex items-center">
+            <p class="text-gray-300 text-sm">Indexing Protection</p>
+          </div>
+          <div class="p-4 flex items-center justify-center border-l border-gray-700/50">
+            <svg class="w-5 h-5 text-accent-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="p-4 flex items-center justify-center border-l border-brand-500/30 bg-brand-500/5">
+            <svg class="w-5 h-5 text-accent-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="p-4 flex items-center justify-center border-l border-gray-700/50">
+            <svg class="w-5 h-5 text-accent-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          </div>
+        </div>
+
+        <div class="comparison-row grid grid-cols-4 border-b border-gray-700/50">
+          <div class="p-4 col-span-1 flex items-center">
+            <p class="text-gray-300 text-sm">Crawl Error Detection</p>
+          </div>
+          <div class="p-4 flex items-center justify-center border-l border-gray-700/50">
+            <svg class="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="p-4 flex items-center justify-center border-l border-brand-500/30 bg-brand-500/5">
+            <svg class="w-5 h-5 text-accent-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="p-4 flex items-center justify-center border-l border-gray-700/50">
+            <svg class="w-5 h-5 text-accent-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          </div>
+        </div>
+
+        <div class="comparison-row grid grid-cols-4 border-b border-gray-700/50">
+          <div class="p-4 col-span-1 flex items-center">
+            <p class="text-gray-300 text-sm">Advanced Security Config</p>
+          </div>
+          <div class="p-4 flex items-center justify-center border-l border-gray-700/50">
+            <svg class="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="p-4 flex items-center justify-center border-l border-brand-500/30 bg-brand-500/5">
+            <svg class="w-5 h-5 text-accent-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="p-4 flex items-center justify-center border-l border-gray-700/50">
+            <svg class="w-5 h-5 text-accent-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          </div>
+        </div>
+
+        <div class="comparison-row grid grid-cols-4 border-b border-gray-700/50">
+          <div class="p-4 col-span-1 flex items-center">
+            <p class="text-gray-300 text-sm">Performance Monitoring</p>
+          </div>
+          <div class="p-4 flex items-center justify-center border-l border-gray-700/50">
+            <svg class="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="p-4 flex items-center justify-center border-l border-brand-500/30 bg-brand-500/5">
+            <svg class="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="p-4 flex items-center justify-center border-l border-gray-700/50">
+            <div class="flex items-center gap-1.5">
+              <svg class="w-5 h-5 text-accent-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span class="text-gray-400 text-xs">30 days</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="comparison-row grid grid-cols-4 border-b border-gray-700/50">
+          <div class="p-4 col-span-1 flex items-center">
+            <p class="text-gray-300 text-sm">Priority Support</p>
+          </div>
+          <div class="p-4 flex items-center justify-center border-l border-gray-700/50">
+            <svg class="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="p-4 flex items-center justify-center border-l border-brand-500/30 bg-brand-500/5">
+            <svg class="w-5 h-5 text-accent-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="p-4 flex items-center justify-center border-l border-gray-700/50">
+            <svg class="w-5 h-5 text-accent-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          </div>
+        </div>
+
+        <div class="comparison-row grid grid-cols-4 border-b border-gray-700/50">
+          <div class="p-4 col-span-1 flex items-center">
+            <p class="text-gray-300 text-sm">Turnaround Time</p>
+          </div>
+          <div class="p-4 flex items-center justify-center border-l border-gray-700/50">
+            <span class="text-gray-400 text-xs font-medium">72 hours</span>
+          </div>
+          <div class="p-4 flex items-center justify-center border-l border-brand-500/30 bg-brand-500/5">
+            <span class="text-brand-300 text-xs font-medium">48 hours</span>
+          </div>
+          <div class="p-4 flex items-center justify-center border-l border-gray-700/50">
+            <span class="text-yellow-400 text-xs font-medium">24 hours</span>
+          </div>
+        </div>
+
+        <div class="comparison-row grid grid-cols-4">
+          <div class="p-4 col-span-1 flex items-center">
+            <p class="text-gray-300 text-sm">API & PLS Security Bundle</p>
+          </div>
+          <div class="p-4 flex items-center justify-center border-l border-gray-700/50">
+            <svg class="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="p-4 flex items-center justify-center border-l border-brand-500/30 bg-brand-500/5">
+            <svg class="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="p-4 flex items-center justify-center border-l border-gray-700/50">
+            <svg class="w-5 h-5 text-accent-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- TRUST BADGES SECTION -->
+  <section class="py-14 bg-gray-950" style="max-height: 300px;">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="flex flex-col items-center text-center gap-3 p-4 bg-gray-900/50 border border-gray-800 rounded-large">
+          <div class="w-10 h-10 bg-accent-500/15 rounded-large flex items-center justify-center">
+            <svg class="w-5 h-5 text-accent-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <div>
+            <p class="font-heading font-bold text-white text-sm">Satisfaction Guaranteed</p>
+            <p class="text-gray-500 text-xs mt-1">100% money-back if not satisfied</p>
+          </div>
+        </div>
+        <div class="flex flex-col items-center text-center gap-3 p-4 bg-gray-900/50 border border-gray-800 rounded-large">
+          <div class="w-10 h-10 bg-brand-500/15 rounded-large flex items-center justify-center">
+            <svg class="w-5 h-5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          </div>
+          <div>
+            <p class="font-heading font-bold text-white text-sm">No Hidden Fees</p>
+            <p class="text-gray-500 text-xs mt-1">One-time payment, nothing more</p>
+          </div>
+        </div>
+        <div class="flex flex-col items-center text-center gap-3 p-4 bg-gray-900/50 border border-gray-800 rounded-large">
+          <div class="w-10 h-10 bg-purple-500/15 rounded-large flex items-center justify-center">
+            <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div>
+            <p class="font-heading font-bold text-white text-sm">Fast Turnaround</p>
+            <p class="text-gray-500 text-xs mt-1">Results in 24–72 hours</p>
+          </div>
+        </div>
+        <div class="flex flex-col items-center text-center gap-3 p-4 bg-gray-900/50 border border-gray-800 rounded-large">
+          <div class="w-10 h-10 bg-yellow-500/15 rounded-large flex items-center justify-center">
+            <svg class="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <div>
+            <p class="font-heading font-bold text-white text-sm">Expert Support</p>
+            <p class="text-gray-500 text-xs mt-1">Shopify SEO specialists</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- CTA SECTION -->
+  <section class="py-20 bg-gray-900" style="max-height: 600px;">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="bg-gradient-to-br from-brand-900/40 to-purple-900/40 border border-brand-500/25 rounded-large p-12">
+        <div class="inline-flex items-center gap-2 bg-brand-500/10 border border-brand-500/20 rounded-full px-4 py-1.5 mb-6">
+          <span class="w-2 h-2 bg-accent-400 rounded-full badge-pulse"></span>
+          <span class="text-brand-300 text-xs font-semibold tracking-wide uppercase">Ready to Get Started?</span>
+        </div>
+        <h2 class="font-heading text-3xl sm:text-4xl font-bold text-white mb-5">Select a Package &amp; Contact Us</h2>
+        <p class="text-gray-300 text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
+          Choose the package that fits your store's needs and reach out to our team. We'll get your Shopify store's crawl health and security optimized within 24–72 hours.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+          <a href="/api/copilot/prototype/a5ab68f6-68ce-457a-bfe0-8f7edfb39571/contact-us" class="btn-primary text-white font-bold px-10 py-4 rounded-small text-base">
+            Contact Us to Get Started →
+          </a>
+          <a href="/api/copilot/prototype/a5ab68f6-68ce-457a-bfe0-8f7edfb39571/pls-security" class="border border-gray-600 hover:border-brand-400 text-gray-300 hover:text-white font-semibold px-10 py-4 rounded-small text-base transition-all duration-300">
+            Learn About Services
+          </a>
+        </div>
+        <div class="flex flex-wrap justify-center items-center gap-6">
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-accent-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            <span class="text-gray-400 text-sm">One-time payment</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-accent-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            <span class="text-gray-400 text-sm">No subscriptions</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-accent-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            <span class="text-gray-400 text-sm">24h response time</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-accent-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            <span class="text-gray-400 text-sm">Satisfaction guaranteed</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- FOOTER -->
+  <footer class="py-12 bg-gray-950" style="max-height: 400px;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-4 gap-8 mb-10">
+        <div class="sm:col-span-1">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-8 h-8 rounded-small bg-gradient-to-br from-brand-500 to-purple-600 flex items-center justify-center">
+              <span class="text-white text-xs font-bold">PLS</span>
+            </div>
+            <span class="font-heading font-bold text-white text-lg">ShopifyCrawlFix</span>
+          </div>
+          <p class="text-gray-400 text-sm leading-relaxed">Professional Shopify security, API encryption, and email marketing. Everything your store needs to grow safely.</p>
+        </div>
+        <div>
+          <h4 class="font-heading font-semibold text-white mb-4">Services</h4>
+          <ul class="space-y-2">
+            <li><a href="/api/copilot/prototype/a5ab68f6-68ce-457a-bfe0-8f7edfb39571/pls-security" class="text-gray-400 hover:text-white text-sm transition-colors">PLS Security</a></li>
+            <li><a href="/api/copilot/prototype/a5ab68f6-68ce-457a-bfe0-8f7edfb39571/api-encryption" class="text-gray-400 hover:text-white text-sm transition-colors">API Encryption</a></li>
+            <li><a href="/api/copilot/prototype/a5ab68f6-68ce-457a-bfe0-8f7edfb39571/email-marketing" class="text-gray-400 hover:text-white text-sm transition-colors">Email Marketing</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-heading font-semibold text-white mb-4">Company</h4>
+          <ul class="space-y-2">
+            <li><a href="/api/copilot/prototype/a5ab68f6-68ce-457a-bfe0-8f7edfb39571/service-packages" class="text-brand-400 text-sm transition-colors">Service Packages</a></li>
+            <li><a href="/api/copilot/prototype/a5ab68f6-68ce-457a-bfe0-8f7edfb39571/contact-us" class="text-gray-400 hover:text-white text-sm transition-colors">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-heading font-semibold text-white mb-4">Contact</h4>
+          <div class="flex items-center gap-3 mb-3">
+            <svg class="w-4 h-4 text-brand-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            <a href="mailto:support@shopifycrawlfix.com" class="text-gray-400 hover:text-white text-sm transition-colors">support@shopifycrawlfix.com</a>
+          </div>
+          <div class="flex items-center gap-3">
+            <svg class="w-4 h-4 text-accent-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="text-gray-400 text-sm">Response within 24 hours</span>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-gray-500 text-sm">© 2025 ShopifyCrawlFix. All rights reserved.</p>
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 bg-accent-400 rounded-full badge-pulse"></span>
+          <span class="text-gray-500 text-sm">Service Active — Accepting New Clients</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    });
+
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = entry.target.classList.contains('featured')
+            ? 'translateY(-12px) scale(1.03)'
+            : 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.package-card').forEach(el => {
+      if (!el.classList.contains('featured')) {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease, box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1)';
+      } else {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(8px) scale(1.03)';
+        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease, box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1)';
+      }
+      observer.observe(el);
+    });
+
+    document.querySelectorAll('.card-hover').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
